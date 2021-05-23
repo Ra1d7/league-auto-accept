@@ -8,7 +8,7 @@ banned = False
 chose = False
 
 def findimage(image):
-    cords = pyautogui.locateOnScreen(image)
+    cords = pyautogui.locateOnScreen(image,confidence=0.85)
     if(cords is not None):
         return cords
 
