@@ -8,20 +8,18 @@ banned = False
 chose = False
 
 def findimage(image):
-    cords = pyautogui.locateOnScreen(image,confidence=0.85)
+    cords = pyautogui.locateOnScreen(image,confidence=0.98)
     if(cords is not None):
         return cords
 
 def click(img):
     sleep(2)
-    global brek
     if(findimage(img) is not None):
         pyautogui.click(findimage(img))
 def main():
     to_ban = input("what champion to ban?: ")
     to_select= input("what champion to play?: ")
     global accepted,banned,chose
-    print(accepted,banned,chose)
     print("[+] Started Searching [+]")
     #keep searching for the accept button
     while findimage("accepted.png") is None and accepted == False:
@@ -33,6 +31,7 @@ def main():
     accepted = True
     print("Game Started!")
     while findimage("ban_search.png") is None and banned == False:
+        print(findimage("ban_search.png"))
         sleep(0.1)
     print("[+] Found Ban Button [+]")
     ban_cords = findimage("ban_search.png")
@@ -41,7 +40,7 @@ def main():
     sleep(0.3)
     pyautogui.write(to_ban,interval=0.25)
     sleep(0.5)
-    pyautogui.click(ban_cords[0]-382,ban_cords[1]+55)
+    pyautogui.click(ban_cords[0]-378,ban_cords[1]+55)
     sleep(1)
     click("ban_button.png")
     sleep(0.5)
@@ -56,7 +55,7 @@ def main():
     sleep(0.5)
     pyautogui.write(to_select,interval=0.25)
     sleep(1)
-    pyautogui.click(normal_search_cords[0]-382,normal_search_cords[1]+55)
+    pyautogui.click(normal_search_cords[0]-378,normal_search_cords[1]+55)
     sleep(1)
     click("lock_button.png")
     print("Selected [{0}] And Banned [{1}]".format(to_select,to_ban))
